@@ -3,5 +3,11 @@
 }
 
 .Palette-colors {
-    height: 90%;
+  height: 90%;
+}
+
+.slider {
+  width: 340px;
+  margin: 0 10px;
+  display: inline-block;
 }
