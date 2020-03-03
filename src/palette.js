@@ -13,6 +13,11 @@ class Palette extends Component {
   changeLevel = level => {
     this.setState({ level });
   };
+
+  changeFormat = val => {
+    alert(val);
+  };
+
   render() {
     const { colors } = this.props.palette;
     const { level } = this.state;
@@ -23,7 +28,11 @@ class Palette extends Component {
 
     return (
       <div className="Palette">
-        <Navbar level={level} changeLevel={this.changeLevel} />
+        <Navbar
+          level={level}
+          changeLevel={this.changeLevel}
+          handleChange={this.changeFormat}
+        />
         {/* Nav bar goes here */}
         <div className="Palette-colors">{colorBoxes}</div>
         {/* footer goes here */}
