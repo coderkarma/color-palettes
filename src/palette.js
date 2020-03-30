@@ -6,6 +6,8 @@ import './Palette.css';
 
 import 'rc-slider/assets/index.css';
 
+
+
 class Palette extends Component {
     state = {
         level: 500,
