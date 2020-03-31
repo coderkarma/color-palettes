@@ -6,8 +6,6 @@ import './Palette.css';
 
 import 'rc-slider/assets/index.css';
 
-
-
 class Palette extends Component {
     state = {
         level: 500,
@@ -34,7 +32,7 @@ class Palette extends Component {
                 name={color.name}
                 key={color.id}
                 moreUrl={`/palette/${id}/${color.id}`}
-                showLink
+                showingFullPalette
             />
         ));
 
