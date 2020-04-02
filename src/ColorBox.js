@@ -66,6 +66,17 @@ const styles = {
         border: 'none',
         textDecoration: 'none',
         opacity: 0
+    },
+
+    boxContent: {
+    position: "absolute",
+    left: "0px",
+    padding: "10px",
+    bottom: "0px",
+    color: "black",
+    letterSpacing: "1px",
+    textTransform: "uppercase",
+    fontSize: "12px"
     }
 };
 
@@ -102,8 +113,8 @@ class ColorBox extends Component {
                             {this.props.background}
                         </p>
                     </div>
-                    <div className="copy-container">
-                        <div className="box-content">
+                    <div>
+                        <div className={classes.boxContent}>
                             <span className={classes.colorName}>{name}</span>
                         </div>
                         <button className={classes.copyButton}>Copy</button>
