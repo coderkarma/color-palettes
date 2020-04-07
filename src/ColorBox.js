@@ -61,6 +61,7 @@ const styles = {
         textAlign: "center",
         outline: "none",
         background: "rgb(255, 255, 255, 0.3)",
+        fontSize: "1rem",
         lineHeight: "30px",
         textTransform: "uppercase",
         border: "none",

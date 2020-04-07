@@ -1,32 +1,46 @@
-import React, { Component } from 'react';
-import Navbar from './Navbar';
-import PaletteFotter from './PaletteFooter';
-import ColorBox from './ColorBox';
-import './Palette.css';
+import React, { Component } from "react";
+import Navbar from "./Navbar";
+import PaletteFotter from "./PaletteFooter";
+import { withStyles } from "@material-ui/styles";
+import ColorBox from "./ColorBox";
+import "./Palette.css";
 
-import 'rc-slider/assets/index.css';
+import "rc-slider/assets/index.css";
+
+const styles = {
+    Palette: {
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+    },
+
+    colors: {
+        height: "90%",
+    },
+};
 
 class Palette extends Component {
     state = {
         level: 500,
-        format: 'hex'
+        format: "hex",
     };
 
-    changeLevel = level => {
+    changeLevel = (level) => {
         this.setState({ level });
     };
 
-    changeFormat = val => {
+    changeFormat = (val) => {
         this.setState({
-            format: val
+            format: val,
         });
     };
 
     render() {
         const { colors, paletteName, emoji, id } = this.props.palette;
         const { level, format } = this.state;
+        const { classes } = this.props;
 
-        const colorBoxes = colors[level].map(color => (
+        const colorBoxes = colors[level].map((color) => (
             <ColorBox
                 background={color[format]}
                 name={color.name}
@@ -37,7 +51,7 @@ class Palette extends Component {
         ));
 
         return (
-            <div className="Palette">
+            <div className={classes.Palette}>
                 <Navbar
                     level={level}
                     changeLevel={this.changeLevel}
@@ -45,11 +59,11 @@ class Palette extends Component {
                     showingAllColors
                 />
 
-                <div className="Palette-colors">{colorBoxes}</div>
+                <div className={classes.colors}>{colorBoxes}</div>
                 <PaletteFotter paletteName={paletteName} emoji={emoji} />
             </div>
         );
     }
 }
 
-export default Palette;
+export default withStyles(styles)(Palette);
