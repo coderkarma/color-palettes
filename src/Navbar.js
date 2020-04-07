@@ -1,31 +1,32 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import Snackbar from '@material-ui/core/Snackbar';
-import CloseIcon from '@material-ui/icons/Close';
-import { IconButton } from '@material-ui/core';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Snackbar from "@material-ui/core/Snackbar";
+import CloseIcon from "@material-ui/icons/Close";
+import { IconButton } from "@material-ui/core";
+import "rc-slider/assets/index.css";
 
-import Slider from 'rc-slider';
-import './Navbar.css';
+import Slider from "rc-slider";
+import "./Navbar.css";
 
 class Navbar extends Component {
     state = {
-        format: 'hex',
-        open: false
+        format: "hex",
+        open: false,
     };
 
-    handleFormatChange = e => {
+    handleFormatChange = (e) => {
         this.setState({
             format: e.target.value,
-            open: true
+            open: true,
         });
         //this.props.handleChange(e.target.value);
     };
 
     closeSnackbar = () => {
         this.setState({
-            open: false
+            open: false,
         });
     };
     render() {
@@ -47,16 +48,16 @@ class Navbar extends Component {
                                 max={900}
                                 step={100}
                                 onAfterChange={changeLevel}
-                                trackStyle={{ backgroundColor: 'transparent' }}
+                                trackStyle={{ backgroundColor: "transparent" }}
                                 handleStyle={{
-                                    backgroundColor: 'green',
-                                    outline: 'none',
-                                    border: '2px solid green',
-                                    boxShadow: 'none',
-                                    width: '13px',
-                                    height: '13px',
-                                    maringLeft: '-7px',
-                                    marginTop: '-3px'
+                                    backgroundColor: "green",
+                                    outline: "none",
+                                    border: "2px solid green",
+                                    boxShadow: "none",
+                                    width: "13px",
+                                    height: "13px",
+                                    maringLeft: "-7px",
+                                    marginTop: "-3px",
                                 }}
                                 railStyle={{ height: 8 }}
                             />
@@ -77,7 +78,7 @@ class Navbar extends Component {
 
                 <Snackbar
                     onClose={this.closeSnackbar}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
                     open={this.state.open}
                     autoHideDuration={3000}
                     message={
@@ -86,7 +87,7 @@ class Navbar extends Component {
                         </span>
                     }
                     ContentProps={{
-                        'aria-describedby': 'message-id'
+                        "aria-describedby": "message-id",
                     }}
                     action={[
                         <IconButton
@@ -96,7 +97,7 @@ class Navbar extends Component {
                             aria-label="close"
                         >
                             <CloseIcon />
-                        </IconButton>
+                        </IconButton>,
                     ]}
                 />
             </header>

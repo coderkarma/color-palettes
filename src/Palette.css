@@ -7,8 +7,8 @@
 /* .Palette-colors {
     height: 90%;
 } */
-
-.Palette-fotter {
+/* 
+.Palette-footer {
     background-color: white;
     height: 5vh;
     display: flex;
@@ -19,5 +19,5 @@
 
 .emoji {
     font-size: 1.5rem;
-    margin: 1rem;
-}
+    margin: 0 1rem;
+} */
