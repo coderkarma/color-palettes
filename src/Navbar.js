@@ -23,7 +23,7 @@ class Navbar extends Component {
             format: e.target.value,
             open: true,
         });
-        //this.props.handleChange(e.target.value);
+        this.props.handleChange(e.target.value);
     };
 
     closeSnackbar = () => {
