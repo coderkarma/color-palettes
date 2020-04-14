@@ -59,7 +59,7 @@ const styles = (theme) => ({
 	content: {
 		flexGrow: 1,
 		height: 'calc(100vh - 64px)',
-		padding: theme.spacing.unit * 3,
+		padding: theme.spacing(3),
 		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
@@ -84,11 +84,17 @@ class NewPaletteForm extends Component {
 	};
 
 	componentDidMount() {
-		ValidatorForm.addValidationRule('isColorName', (value) =>
-			this.state.colors.every(
+		ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
+			return this.state.colors.every(
 				({ name }) => name.toLowerCase() !== value.toLowerCase()
-			)
-		);
+			);
+		});
+
+		ValidatorForm.addValidationRule('isColorUnique', (value) => {
+			return this.state.colors.every(
+				({ color }) => color !== this.state.currentColor
+			);
+		});
 	}
 
 	updateCurrentColor = (newColor) => {
@@ -104,6 +110,7 @@ class NewPaletteForm extends Component {
 		};
 		this.setState({
 			colors: [...this.state.colors, newColor],
+			newName: '',
 		});
 	};
 
@@ -115,9 +122,9 @@ class NewPaletteForm extends Component {
 		this.setState({ open: false });
 	};
 
-	handleChange = (event) => {
+	handleChange = (evt) => {
 		this.setState({
-			newName: event.target.value,
+			newName: evt.target.value,
 		});
 	};
 
@@ -180,10 +187,15 @@ class NewPaletteForm extends Component {
 						<TextValidator
 							value={this.state.newName}
 							onChange={this.handleChange}
-							validators={['required', 'isColorNameUnique']}
+							validators={[
+								'required',
+								'isColorUnique',
+								'isColorNameUnique',
+							]}
 							errorMessages={[
-								'this field is required',
-								'Color name must be unique',
+								'Enter a color name',
+								'Color must be unique',
+								'Color already used',
 							]}
 						/>
 						<Button
@@ -204,10 +216,11 @@ class NewPaletteForm extends Component {
 					})}>
 					<div className={classes.drawerHeader} />
 
-					{this.state.colors.map((color) => (
+					{this.state.colors.map((color, idx) => (
 						<DraggableColorBox
 							color={color.color}
 							name={color.name}
+							key={idx}
 						/>
 					))}
 				</main>
