@@ -73,6 +73,7 @@ export default {
 		letterSpacing: '1px',
 		textTransform: 'uppercase',
 		fontSize: '12px',
+		width: '100%',
 	},
 
 	copyOverlay: {
