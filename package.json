@@ -12,6 +12,7 @@
     "array-move": "^2.2.1",
     "chroma-js": "^2.1.0",
     "core-js": "^3.6.4",
+    "emoji-mart": "^3.0.0",
     "rc-slider": "^9.2.1",
     "react": "^16.12.0",
     "react-color": "^2.18.0",

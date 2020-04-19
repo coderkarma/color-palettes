@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
 
 class PaletteMetaForm extends Component {
 	state = {
@@ -33,17 +35,17 @@ class PaletteMetaForm extends Component {
 		this.setState({ open: true });
 	};
 
-	handleClose = () => {
-		this.setState({ open: false });
-	};
+	// handleClose = () => {
+	// 	this.setState({ open: false });
+	// };
 
 	render() {
 		const { newPaletteName } = this.state;
-		const { handleSubmit } = this.props;
+		const { handleSubmit, hideForm } = this.props;
 		return (
 			<Dialog
 				open={this.state.open}
-				onClose={this.handleClose}
+				onClose={hideForm}
 				aria-labelledby='form-dialog-title'>
 				<DialogTitle id='form-dialog-title'>
 					Choose a Palette Name
@@ -54,7 +56,7 @@ class PaletteMetaForm extends Component {
 							Please enter a name for your Palette. Please make
 							sure it is unique.
 						</DialogContentText>
-
+						<Picker set='apple' />
 						<TextValidator
 							value={newPaletteName}
 							label='Palette Name'
@@ -70,7 +72,7 @@ class PaletteMetaForm extends Component {
 						/>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={this.handleClose} color='primary'>
+						<Button onClick={hideForm} color='primary'>
 							Cancel
 						</Button>
 						<Button
