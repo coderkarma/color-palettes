@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+import PaletteMetaForm from './PaletteMetaForm';
 import classNames from 'classnames';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -9,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+// import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 const drawerWidth = 400;
 const styles = (theme) => ({
@@ -52,17 +53,8 @@ class PaletteFormNav extends Component {
 		});
 	};
 
-	componentDidMount() {
-		ValidatorForm.addValidationRule('isPaletteNameUnique', (value) => {
-			return this.props.palettes.every(
-				({ paletteName }) =>
-					paletteName.toLowerCase() !== value.toLowerCase()
-			);
-		});
-	}
-
 	render() {
-		const { classes, open } = this.props;
+		const { classes, open, palettes, handleSubmit } = this.props;
 		const { newPaletteName } = this.state;
 		return (
 			<div className={classes.root}>
@@ -90,28 +82,10 @@ class PaletteFormNav extends Component {
 					</Toolbar>
 
 					<div className={classes.navBtn}>
-						<ValidatorForm
-							onSubmit={() =>
-								this.props.handleSubmit(newPaletteName)
-							}>
-							<TextValidator
-								value={this.state.newPaletteName}
-								label='Palette Name'
-								name='newPaletteName'
-								onChange={this.handleChange}
-								validators={['required', 'isPaletteNameUnique']}
-								errorMessages={[
-									'Enter Palette Name',
-									'Name already used',
-								]}
-							/>
-							<Button
-								variant='contained'
-								color='primary'
-								type='submit'>
-								Save Paletee
-							</Button>
-						</ValidatorForm>
+						<PaletteMetaForm
+							palettes={palettes}
+							handleSubmit={handleSubmit}
+						/>
 						<Link to='/'>
 							<Button variant='contained' color='secondary'>
 								Go Back
