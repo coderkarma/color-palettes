@@ -104,7 +104,7 @@ class NewPaletteForm extends Component {
 						paper: classes.drawerPaper,
 					}}>
 					<div className={classes.drawerHeader}>
-						<IconButton onClick={this.handleDrawerOpen}>
+						<IconButton onClick={this.handleDrawerClose}>
 							<ChevronLeftIcon />
 						</IconButton>
 					</div>
