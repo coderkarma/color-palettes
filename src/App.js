@@ -9,8 +9,10 @@ import NewPaletteForm from './NewPaletteForm';
 import { generatePalette } from './color-helper';
 
 class App extends Component {
+	savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
+
 	state = {
-		palettes: seedColors,
+		palettes: this.savedPalettes || seedColors,
 	};
 
 	findPalette(id) {
@@ -18,9 +20,20 @@ class App extends Component {
 	}
 
 	savePalette = (newPalette) => {
-		this.setState({
-			palettes: [...this.state.palettes, newPalette],
-		});
+		this.setState(
+			{
+				palettes: [...this.state.palettes, newPalette],
+			},
+			this.syncLocalStorage
+		);
+	};
+
+	syncLocalStorage = () => {
+		// save palette to local storage
+		window.localStorage.setItem(
+			'palettes',
+			JSON.stringify(this.state.palettes)
+		);
 	};
 	render() {
 		return (
