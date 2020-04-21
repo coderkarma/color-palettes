@@ -43,4 +43,14 @@ export default {
 		position: 'relative',
 		marginBottom: '-3.5px',
 	},
+
+	delete: {},
+
+	deleteIcon: {
+		color: 'white',
+		backgroundColor: '#eb3d30',
+		height: '20px',
+		width: '20px',
+		position: 'absolute',
+	},
 };
