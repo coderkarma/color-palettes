@@ -8,7 +8,8 @@ import NewPaletteForm from './NewPaletteForm';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { generatePalette } from './color-helper';
-import './App.css';
+import Page from './Page';
+import './'
 
 class App extends Component {
 	savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
@@ -52,7 +53,7 @@ class App extends Component {
 				render={({ location }) => (
 					<TransitionGroup>
 						<CSSTransition
-							classNames='fade'
+							classNames='page'
 							timeout={500}
 							key={location.key}>
 							<Switch location={location}>
@@ -60,19 +61,19 @@ class App extends Component {
 									exact
 									path='/palette/new/'
 									render={(routeProps) => (
-										<div className='page'>
+										<Page>
 											<NewPaletteForm
 												savePalette={this.savePalette}
 												palettes={this.state.palettes}
 												{...routeProps}
 											/>
-										</div>
+										</Page>
 									)}
 								/>
 								<Route
 									path='/palette/:paletteId/:colorId'
 									render={(routeProps) => (
-										<div className='page'>
+										<Page>
 											<SingleColorPlalette
 												colorId={
 													routeProps.match.params
@@ -85,14 +86,14 @@ class App extends Component {
 													)
 												)}
 											/>
-										</div>
+										</Page>
 									)}
 								/>
 								<Route
 									exact
 									path='/'
 									render={(routeProps) => (
-										<div className='page'>
+										<Page>
 											<PaletteList
 												palettes={this.state.palettes}
 												deletePalette={
@@ -101,14 +102,14 @@ class App extends Component {
 												{...routeProps}
 												key={routeProps}
 											/>
-										</div>
+										</Page>
 									)}
 								/>
 								<Route
 									exact
 									path='/palette/:id'
 									render={(routeProps) => (
-										<div className='page'>
+										<Page className='page'>
 											<Palette
 												palette={generatePalette(
 													this.findPalette(
@@ -117,7 +118,7 @@ class App extends Component {
 													)
 												)}
 											/>
-										</div>
+										</Page>
 									)}
 								/>
 							</Switch>
