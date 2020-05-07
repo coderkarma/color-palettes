@@ -13,6 +13,7 @@ import DraggableColorList from './DraggableColorList';
 
 import arrayMove from 'array-move';
 import styles from './styles/NewPaletteFormStyles';
+import seedColors from './seedColors';
 
 class NewPaletteForm extends Component {
 	static defaultProps = {
@@ -21,7 +22,7 @@ class NewPaletteForm extends Component {
 
 	state = {
 		open: true,
-		colors: this.props.palettes[0].colors,
+		colors: seedColors[0].colors,
 	};
 
 	addNewColor = (newColor) => {
