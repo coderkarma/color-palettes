@@ -9,7 +9,6 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { generatePalette } from './color-helper';
 import Page from './Page';
-import './'
 
 class App extends Component {
 	savedPalettes = JSON.parse(window.localStorage.getItem('palettes'));
